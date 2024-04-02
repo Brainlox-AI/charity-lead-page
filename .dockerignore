@@ -1,0 +1,9 @@
+# Node.js specific
+node_modules/
+npm-debug.log
+
+# Workflow files
+.github/
+.gitlab-ci.yml
+.travis.yml
+
