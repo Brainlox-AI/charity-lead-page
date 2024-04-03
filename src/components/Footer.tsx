@@ -1,13 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 
-const Footer = () => {
-    const [email, setEmail] = useState<string>("")
-    const [isDisabled, setIsDisabled] = React.useState(false)
-    const sendEmail = async()=>{
-
-    }
-
+const Footer = ({email, setEmail, isDisabled, setIsDisabled, sendEmail} : {email:string, setEmail:React.Dispatch<React.SetStateAction<string>>, isDisabled:boolean, setIsDisabled:React.Dispatch<React.SetStateAction<boolean>>, sendEmail:(e:any)=>{}}) => {
   return (
     <>
     <div className='flex flex-col items-center mt-5 py-16'>

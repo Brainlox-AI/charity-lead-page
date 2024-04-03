@@ -2,12 +2,7 @@
 import React from 'react'
 import HeroSvg from './HeroSvg'
 
-const HeroSection = () => {
-    const [email, setEmail] = React.useState("")
-    const [isDisabled, setIsDisabled] = React.useState(false)
-    const sendEmail = async()=>{
-
-    }
+const HeroSection = ({email, setEmail, isDisabled, setIsDisabled, sendEmail} : {email:string, setEmail:React.Dispatch<React.SetStateAction<string>>, isDisabled:boolean, setIsDisabled:React.Dispatch<React.SetStateAction<boolean>>, sendEmail:(e:any)=>{}}) => {
   return (
 <div className="container flex flex-col lg:justify-between lg:flex-row relative z-10 ">
   <div className="flex flex-col pt-[141px] absolute left-[5%]">
