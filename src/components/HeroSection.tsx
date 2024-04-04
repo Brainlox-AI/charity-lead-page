@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import HeroSvg from './HeroSvg'
+import Image from 'next/image'
 
 const HeroSection = ({email, setEmail, isDisabled, setIsDisabled, sendEmail} : {email:string, setEmail:React.Dispatch<React.SetStateAction<string>>, isDisabled:boolean, setIsDisabled:React.Dispatch<React.SetStateAction<boolean>>, sendEmail:(e:any)=>{}}) => {
   return (
@@ -35,7 +35,7 @@ const HeroSection = ({email, setEmail, isDisabled, setIsDisabled, sendEmail} : {
     </div>
   </div>
   <div className="flex">
-    <HeroSvg/>
+  <Image src={"/bg.png"} alt='Bg Image' height={1200} width={1500} className='h-full w-full' style={{height:"100vh", width:"100vw"}}/>
   </div>
 </div>
   )

@@ -1,11 +1,12 @@
 "use client"
+import BenefitsSection from '@/components/BenefitsSection'
 import DemoSection from '@/components/DemoSection'
+import FeaturesSection from '@/components/FeaturesSection'
 import Footer from '@/components/Footer'
 import HeroSection from '@/components/HeroSection'
 import Navbar from '@/components/Navbar'
 import React, {useState} from 'react'
 import Swal from 'sweetalert2'
-
 
 const Home = () => {
   const [email, setEmail] = useState<string>("")
@@ -58,6 +59,8 @@ const Home = () => {
     <Navbar/>
     <HeroSection email={email} setEmail={setEmail} isDisabled={isDisabled} setIsDisabled={setIsDisabled} sendEmail={sendEmail} />
     <DemoSection/>
+    <FeaturesSection/>
+    <BenefitsSection/>
     <Footer email={email} setEmail={setEmail} isDisabled={isDisabled} setIsDisabled={setIsDisabled} sendEmail={sendEmail}/>
     </>
   )
