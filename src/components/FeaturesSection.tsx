@@ -8,7 +8,7 @@ const FeaturesSection = () => {
         {image:"/card3.jpeg",title:"Gamified Engagement",content:"Transform learning into an interactive experience with Debales' gamified engagement features. Motivate learners through gamification techniques, promoting active participation and retention of knowledge."},
     ]
   return (
-    <div className="container flex flex-col items-center mt-20">
+    <div className="container flex flex-col mx-auto items-center mt-20">
         <div className="titles text-center text-[#344054]">
             <div className="title text-sm border rounded-3xl px-2 py-1 border-gray-400 max-w-fit mx-auto">GenAI Capabilities</div>
             <div className="big-heading text-4xl my-6" style={{fontWeight:600}}>
@@ -18,8 +18,8 @@ const FeaturesSection = () => {
         <div className="flex w-[95%]  flex-wrap mx-auto my-5 justify-center">
             {data && data.map((item,idx)=>{
                 return (<div key={idx} className="p-4 md:w-1/3 sm:mb-0 mb-6">
-                <div className="rounded-lg h-64 overflow-hidden">
-                    <Image src={item.image} alt='Image' height={150} width={150} className="object-cover object-center h-full w-full"/>
+                <div className="rounded-lg h-96 overflow-hidden">
+                    <Image src={item.image} alt='Image' height={300} width={300} className="object-cover object-center h-full w-full"/>
                 </div>
                 <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{item.title}</h2>
                 <p className="text-base leading-relaxed mt-2">{item.content}</p>

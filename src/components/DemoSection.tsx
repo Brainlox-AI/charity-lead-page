@@ -4,6 +4,7 @@ import Image from 'next/image';
 import axios from 'axios'
 import ChatSvg from './ChatSvg';
 import YouTube from 'react-youtube';
+import mixpanel from '@/config/mixpanel';
 
 type MessageType = {
     content:any,
@@ -32,6 +33,7 @@ const DemoSection = () => {
         })
         let ans = data.data.response as string;
         sendMessageByBot(ans);
+        mixpanel.track("Message Sent");
     }
 
     const handleKeyPress = async (event:any) => {
@@ -76,7 +78,7 @@ const DemoSection = () => {
         }
       };
   return (
-    <div className='container flex justify-center items-center flex-col'>
+    <div className='container flex justify-center items-center flex-col mx-auto'>
         <h1 className='text-3xl my-2 text-center font-bold text-[#344054]'>Experience Multilingual AI Interaction</h1>
         <h3 className='text-xl my-2 text-center text-[#344054] font-semibold'>Watch the Video and Engage with Our GenAI Assistant Across 80+ Languages</h3>
         <div className='flex shadow-2xl live-chat w-[95%] my-10 border rounded-2xl p-6'>
@@ -89,15 +91,14 @@ const DemoSection = () => {
                 <YouTube className='border rounded-2xl'
                 videoId='zOjov-2OZ0E'
                 opts={{height: '400', width: '100%'}}
+                onPlay={()=>{mixpanel.track("Youtube Video Played");}}
                 />
                 </div>
-                {/* <iframe height="400" className='border rounded-2xl w-[95%]' src="https://www.youtube.com/embed/zOjov-2OZ0E?si=6X0NK61APKOBgScJ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> */}
-
             </div>
             <div className="chat-div flex flex-col w-1/2">
             <div className="title flex justify-between w-[95%] text-lg my-3">
                 <ChatSvg/>
-            <select onChange={(e)=>{setCurrentLang(e.target.value)}} className="form-select rounded-md outline-none border px-2 border-gray-400 text-lg">
+            <select onChange={(e)=>{setCurrentLang(e.target.value);mixpanel.track("Language Changed",{language:e.target.value})}} className="form-select rounded-md outline-none border px-2 border-gray-400 text-lg">
               {languages.map((item,idx)=>{
                 return <option key={idx} value={item}>{item}</option>
               })}

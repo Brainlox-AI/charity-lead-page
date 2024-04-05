@@ -4,18 +4,18 @@ import Image from 'next/image'
 
 const HeroSection = ({email, setEmail, isDisabled, setIsDisabled, sendEmail} : {email:string, setEmail:React.Dispatch<React.SetStateAction<string>>, isDisabled:boolean, setIsDisabled:React.Dispatch<React.SetStateAction<boolean>>, sendEmail:(e:any)=>{}}) => {
   return (
-<div className="container flex flex-col lg:justify-between lg:flex-row relative z-10 ">
-  <div className="flex flex-col pt-[141px] absolute left-[5%]">
-    <div className='text-[#344054]'>
-        <span className="text-[40px] md:text-[61px] font-bold font-openSans ">
+<div className="container mx-auto flex flex-col items-center lg:justify-between lg:flex-row mt-10">
+  <div className="flex flex-col ml-5">
+    <div className='text-[#344054] mt-24'>
+        <span className="text-[60px] md:text-[60px] font-bold font-openSans ">
             Ready to Revolutionize
         </span>
         <br />
-        <span className="text-[35px] md:text-[51px] font-[500] text-opacity-60 font-roboto mt-8 mb-[50px] ">
+        <span className="text-[50px] md:text-[50px] font-[500] text-opacity-60 font-roboto mt-8 mb-[50px] ">
             How Your Charity
         </span>
         <br />
-        <span className="text-[35px] font-[500] md:text-[51px] text-opacity-60 font-roboto mt-8 mb-[50px] ">
+        <span className="text-[50px] font-[500] md:text-[50px] text-opacity-60 font-roboto mt-8 mb-[50px] ">
             Learn and Grows?
         </span>
     </div>
@@ -34,8 +34,8 @@ const HeroSection = ({email, setEmail, isDisabled, setIsDisabled, sendEmail} : {
       <button disabled={isDisabled} onClick={sendEmail} className="bg-[#6941C6] font-openSans text-[15px] h-[41px] text-white w-1/5 absolute right-[35%] top-3 bottom-3" style={{borderRadius:"60px"}}>Get Free Demo</button>
     </div>
   </div>
-  <div className="flex">
-  <Image src={"/bg.png"} alt='Bg Image' height={1200} width={1500} className='h-full w-full' style={{height:"100vh", width:"100vw"}}/>
+  <div>
+  <Image priority src={"/bg2.png"} alt='Bg Image' height={1200} width={1500} className='h-full w-full' style={{height:"75vh"}}/>
   </div>
 </div>
   )
