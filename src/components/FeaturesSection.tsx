@@ -15,9 +15,9 @@ const FeaturesSection = () => {
                 <span>Enhance Learning Across 80+ Languages</span> <br/> <span>with interactive AI Technology</span>
             </div>
         </div>
-        <div className="flex w-[95%]  flex-wrap mx-auto my-5 justify-center">
+        <div className="flex w-[88%]  flex-wrap mx-auto my-5 justify-center">
             {data && data.map((item,idx)=>{
-                return (<div key={idx} className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                return (<div key={idx} className="p-4 md:w-[32%] sm:mb-0 mb-6 border border-gray-500 rounded-2xl mx-2 my-3">
                 <div className="rounded-lg h-96 overflow-hidden">
                     <Image src={item.image} alt='Image' height={300} width={300} className="object-cover object-center h-full w-full"/>
                 </div>

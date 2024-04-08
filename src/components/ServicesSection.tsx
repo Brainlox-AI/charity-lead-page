@@ -33,7 +33,7 @@ const ServicesSection = () => {
                 Unlock the power of Debales for dynamic learning experiences. Explore our suite of tool to elevate education
             </div>
         </div>
-        <div className="w-[95%]  mx-auto my-5 flex flex-col justify-between items-center">
+        <div className="w-[88%]  mx-auto my-5 flex flex-col justify-between items-center">
             <div className='flex w-full justify-center'>
                 {getDiv(data[0].image,data[0].title, data[0].content,"w-[40%] mr-3 ")}
                 {getDiv(data[1].image,data[1].title, data[1].content,"w-[60%] ml-3 ")}

@@ -17,9 +17,9 @@ const BenefitsSection = () => {
                 Discover the Benefits: Elevate Your Learning
             </div>
         </div>
-        <div className="flex w-[95%] mx-auto  flex-wrap sm:-m-4 my-5 justify-center">
+        <div className="flex w-[88%] mx-auto  flex-wrap sm:-m-4 my-5 justify-center">
             {data && data.map((item,idx)=>{
-                return (<div key={idx} className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                return (<div key={idx} className="p-4 md:w-[32%] sm:mb-0 mb-6 border border-gray-500 rounded-2xl mx-2 my-3">
                 <div className="rounded-lg h-96 overflow-hidden">
                     <Image src={item.image} alt='Image' height={300} width={300} className="object-cover object-center h-full w-full"/>
                 </div>
