@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image';
 import axios from 'axios'
 import YouTube from 'react-youtube';
+import toast, {Toaster} from 'react-hot-toast';
 import mixpanel from '@/config/mixpanel';
 import { hindi_summary, french_summary, spanish_summary, portuguese_summary, english_summary } from './SummaryVideo';
 
@@ -20,6 +21,7 @@ const DemoSection = () => {
     const [messages, setMessages] = useState<MessageType[]>([]);
     const messageContainer= useRef<HTMLDivElement>(null)
     let [videoSummary,setVideoSummary] = useState<string>("");
+    const [showCopy,setShowCopy] = useState<boolean>(true);
     const api_url = "https://programmingvideoembedding.azurewebsites.net/qna"
 
     useEffect(()=>{
@@ -73,6 +75,23 @@ const DemoSection = () => {
         setMessages((prevMessages) => [...prevMessages.slice(0,prevMessages.length-1), { content: message, sentBy: 'bot' }]);
       }
 
+    const copySummary = async()=>{
+        setShowCopy(false);
+        await navigator.clipboard.writeText(videoSummary);
+        toast('Summary Copied!', {
+          icon: '🎉',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        });
+        mixpanel.track(`Summary Copied of ${currentLang} language`)
+        setTimeout(()=>{
+          setShowCopy(true)
+        },200);
+    }
+
     const sendMessage = async (message:string) => {
         setLoading(true);
         setMessages((prevMessages) => [...prevMessages, { content: message, sentBy: 'you' }]);
@@ -104,6 +123,11 @@ const DemoSection = () => {
         }
       };
   return (
+    <>
+        <Toaster
+      position="top-center"
+      reverseOrder={false}
+    />
     <div className='container flex justify-center items-center flex-col mx-auto'>
         <h1 className='text-3xl my-2 text-center font-bold text-[#344054]'>Experience Multilingual AI Interaction</h1>
         <h3 className='text-xl my-2 text-center text-[#344054] font-semibold'>Watch the Video and Engage with Our GenAI Assistant Across 80+ Languages</h3>
@@ -142,20 +166,22 @@ const DemoSection = () => {
               })}
             </select>
                 </div>
-                <div className="chat border rounded-2xl border-black h-[420px] w-[95%]">
+                <div className="chat border rounded-2xl border-black h-[420px] overflow-y-auto w-[95%]">
                   {!showChats && 
                   <>
                     <div className="text-center mt-2 mb-1 text-xl font-bold underline">Summary Of Video</div>
-                    <div className='p-2 relative bg-gray-100 rounded-md w-[95%] mx-auto overflow-y-auto'>
+                    <div className='p-2 relative bg-gray-100 rounded-md w-[95%] mx-auto'>
                       {videoSummary}
 
                       <div title={`Copy Summary in ${currentLang}`}>
-                        <svg onClick={async()=>{
-                          await navigator.clipboard.writeText(videoSummary);
-                        }} className="cursor-pointer w-6 h-6 text-black absolute right-1 bottom-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        {showCopy && <svg onClick={copySummary} className="cursor-pointer w-6 h-6 text-black absolute right-1 bottom-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                           <path fillRule="evenodd" d="M18 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V9a4 4 0 0 0-4-4h-3a1.99 1.99 0 0 0-1 .267V5a2 2 0 0 1 2-2h7Z" clipRule="evenodd"/>
                           <path fillRule="evenodd" d="M8 7.054V11H4.2a2 2 0 0 1 .281-.432l2.46-2.87A2 2 0 0 1 8 7.054ZM10 7v4a2 2 0 0 1-2 2H4v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z" clipRule="evenodd"/>
-                        </svg>
+                        </svg>}
+
+                       {!showCopy && <svg className="cursor-pointer w-6 h-6 text-black absolute right-1 bottom-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 11.917 9.724 16.5 19 7.5"/>
+                        </svg>}
                       </div>
 
                     </div>
@@ -168,18 +194,18 @@ const DemoSection = () => {
           </div>
                     <div className="input flex items-center p-2 border-t border-gray-300">
                     <input
-          value={messageInput}
-          onChange={(e)=>setMessageInput(e.target.value)}
-          type="text"
-          placeholder="Type your message..."
-          className="flex-grow px-4 py-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-          onKeyDownCapture={handleKeyPress}
-          disabled={loading}
-        />
-        <button
-          className="ml-2 px-4 py-2 rounded-lg"
-          onClick={() => sendMessage(messageInput)}
-        >
+                      value={messageInput}
+                      onChange={(e)=>setMessageInput(e.target.value)}
+                      type="text"
+                      placeholder="Type your message..."
+                      className="flex-grow px-4 py-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      onKeyDownCapture={handleKeyPress}
+                      disabled={loading}
+                    />
+                  <button
+                    className="ml-2 px-4 py-2 rounded-lg"
+                    onClick={() => sendMessage(messageInput)}
+                  >
           <svg viewBox="0 0 20 20" style={{"transform":"rotate(90deg)", width:"1.2rem", height:"1.2rem", fill:'currentcolor'}} xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
         </button>
                     </div>
@@ -190,6 +216,7 @@ const DemoSection = () => {
         </div>
 
     </div>
+    </>
   )
 }
 

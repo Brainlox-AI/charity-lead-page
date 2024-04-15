@@ -5,12 +5,12 @@ const Footer = ({email, setEmail, isDisabled, setIsDisabled, sendEmail} : {email
   return (
     <>
     <div className='flex flex-col items-center mt-5 py-16'>
-            <h1 className="font-bold text-3xl mb-2">Get Started with Debales</h1>
-            <h3 className="font-semibold text-2xl mb-16 ">Discover How Our Advanced GenAI Tools and Content Can Amplify Your Impact</h3>
+            <h1 className="font-bold text-3xl mb-2 text-center">Get Started with Debales</h1>
+            <h3 className="font-semibold text-xl mb-16 text-center">Discover How Our Advanced GenAI Tools and Content Can Amplify Your Impact</h3>
             <div className="relative md:w-[605px]">
                 <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Enter your work email" className="h-[83px] w-full  font-roboto text-[18px] font-[500] p-8 border border-gray-500 outline-none" style={{borderRadius:"60px"}}>
               </input>
-                <button disabled={isDisabled} onClick={sendEmail} className="bg-[#6366F1] font-openSans text-[20px]  h-[59px] w-[193px] absolute right-3 top-3 bottom-3 text-white " style={{borderRadius:"60px"}}>Get Free Demo</button>
+                <button disabled={isDisabled} onClick={sendEmail} className="bg-[#6366F1] font-openSans text-[20px]  h-[59px] w-[193px] absolute right-3 top-3 bottom-3 text-white hover:bg-[#6941C6] transition-colors" style={{borderRadius:"60px"}}>Get Free Demo</button>
               </div>
 
         </div>
@@ -23,7 +23,7 @@ const Footer = ({email, setEmail, isDisabled, setIsDisabled, sendEmail} : {email
 
             <span>{new Date().getFullYear()} Debales</span>
             </p>
-            <div className="flex items-center gap-2 capitalize"><a className="hover:text-button hover:text-red-400" href="https://debales.ai/privacy-policy" target="_blank">Privacy Policy</a>|<a className="hover:text-button hover:text-red-400" href="https://debales.ai/terms-of-service" target="_blank">Terms &amp; Conditions</a></div>
+            <div className="flex items-center gap-2 capitalize"><a className="hover:text-button hover:text-[#6941C6]" href="https://debales.ai/privacy-policy" target="_blank">Privacy Policy</a>|<a className="hover:text-button hover:text-[#6941C6]" href="https://debales.ai/terms-of-service" target="_blank">Terms &amp; Conditions</a></div>
         </div>
     </>
   )

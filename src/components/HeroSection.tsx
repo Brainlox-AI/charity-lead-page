@@ -31,7 +31,7 @@ const HeroSection = ({email, setEmail, isDisabled, setIsDisabled, sendEmail} : {
     <div className="relative pb-[141px] my-5 z-5">
       <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Enter your work email" className="h-[65px] w-2/3 text-black font-roboto text-[15px] font-[500] py-4 px-6 border-gray-500 outline-none border" style={{borderRadius:"60px"}}>
     </input>
-      <button disabled={isDisabled} onClick={sendEmail} className="bg-[#6366F1] font-openSans text-[15px] h-[41px] text-white w-[23%] absolute right-[35%] top-3 bottom-3" style={{borderRadius:"60px"}}>Get Free Demo</button>
+      <button disabled={isDisabled} onClick={sendEmail} className="bg-[#6366F1] font-openSans text-[15px] h-[41px] text-white w-[23%] absolute right-[35%] top-3 bottom-3 hover:bg-[#6941C6] transition-colors" style={{borderRadius:"60px"}}>Get Free Demo</button>
     </div>
   </div>
   <div>
